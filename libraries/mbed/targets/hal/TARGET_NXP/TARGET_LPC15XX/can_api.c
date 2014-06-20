@@ -73,7 +73,6 @@ int can_filter(can_t *obj, uint32_t id, uint32_t mask, CANFormat format, int32_t
             LPC_C_CAN0->CANIF1_MSK2 = CANIFn_MSK2_MXTD /* | CANIFn_MSK2_MDIR */ | BFN_PREP(mask >> 16, CANIFn_MSK2_MSK);
         }
         else {
-            //TODO: ctae is this correct for standard frame? what about CANIF1_ARB1 and CANIF1_MSK1??
             // Mark message valid, Direction = TX, Set Identifier and mask everything
             LPC_C_CAN0->CANIF1_ARB2 = CANIFn_ARB2_MSGVAL | BFN_PREP(id << 2, CANIFn_ARB2_ID);
             LPC_C_CAN0->CANIF1_MSK2 = /* CANIFn_MSK2_MDIR | */ BFN_PREP(mask << 2, CANIFn_MSK2_MSK);
